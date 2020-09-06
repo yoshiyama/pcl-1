@@ -1,3 +1,40 @@
+//
+// Software License Agreement (BSD License)
+
+// Point Cloud Library (PCL) - www.pointclouds.org
+// Copyright (c) 2009-2012, Willow Garage, Inc.
+// Copyright (c) 2012-, Open Perception, Inc.
+// Copyright (c) XXX, respective authors.
+
+// All rights reserved.
+
+// Redistribution and use in source and binary forms, with or without
+// modification, are permitted provided that the following conditions
+// are met: 
+
+//  * Redistributions of source code must retain the above copyright
+//    notice, this list of conditions and the following disclaimer.
+//  * Redistributions in binary form must reproduce the above
+//    copyright notice, this list of conditions and the following
+//    disclaimer in the documentation and/or other materials provided
+//    with the distribution.
+//  * Neither the name of the copyright holder(s) nor the names of its
+//    contributors may be used to endorse or promote products derived
+//    from this software without specific prior written permission.
+
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+// "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+// LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS
+// FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE
+// COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT,
+// INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,
+// BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+// LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER
+// CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+// LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN
+// ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+// POSSIBILITY OF SUCH DAMAGE.
+
 #include <iostream>
 
 #include <pcl/io/pcd_io.h>
@@ -33,10 +70,12 @@ main (int argc, char** argv)
 
   filenames = pcl::console::parse_file_extension_argument (argc, argv, ".ply");
 
-  if (filenames.size () != 1)  {
+  if (filenames.size () != 1)  
+  {
     filenames = pcl::console::parse_file_extension_argument (argc, argv, ".pcd");
 
-    if (filenames.size () != 1) {
+    if (filenames.size () != 1) 
+    {
       showHelp (argv[0]);
       return -1;
     } else {
@@ -47,8 +86,10 @@ main (int argc, char** argv)
   // Load file | Works with PCD and PLY files
   pcl::PointCloud<pcl::PointXYZ>::Ptr source_cloud (new pcl::PointCloud<pcl::PointXYZ> ());
 
-  if (file_is_pcd) {
-    if (pcl::io::loadPCDFile (argv[filenames[0]], *source_cloud) < 0)  {
+  if (file_is_pcd) 
+  {
+    if (pcl::io::loadPCDFile (argv[filenames[0]], *source_cloud) < 0)  
+    {
       std::cout << "Error loading point cloud " << argv[filenames[0]] << std::endl << std::endl;
       showHelp (argv[0]);
       return -1;
@@ -76,6 +117,8 @@ main (int argc, char** argv)
 
   // Define a rotation matrix (see https://en.wikipedia.org/wiki/Rotation_matrix)
   float theta = M_PI/4; // The angle of rotation in radians
+
+
   transform_1 (0,0) = std::cos (theta);
   transform_1 (0,1) = -sin(theta);
   transform_1 (1,0) = sin (theta);
@@ -96,6 +139,7 @@ main (int argc, char** argv)
 
   // Define a translation of 2.5 meters on the x axis.
   transform_2.translation() << 2.5, 0.0, 0.0;
+
 
   // The same rotation matrix as before; theta radians around Z axis
   transform_2.rotate (Eigen::AngleAxisf (theta, Eigen::Vector3f::UnitZ()));
