@@ -15,3 +15,8 @@ doc/tutorials/content/sources/build/CMakeFiles/3.10.2/CMakeDetermineCompilerABI_
 doc/tutorials/content/sources/build/CMakeFiles/CMakeOutput.log
 doc/tutorials/content/sources/matrix_transform/build/matrix_transform
 build/
+tools/normal_estimation/bin/normal_estimation
+tools/normal_estimation/bin/CMakeFiles/progress.marks
+tools/normal_estimation/workflow.ini
+tools/normal_estimation/bin/cmake_install.cmake
+tools/normal_estimation/bin/Makefile
